@@ -55,7 +55,8 @@ private slots:
     void chk_enable_touchpad_state_changed(int state);
 
     void chk_enable_als_power_state_changed(int state);
-    void update_als_data();
+    void update_als_lux_data();
+    void update_als_kelvin_data();
 
     void chk_lid_s3_changed(int state);
     void chk_lid_s4_changed(int state);

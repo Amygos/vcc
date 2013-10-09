@@ -129,7 +129,10 @@ void MainWindow::setup_ui() {
         ui->chk_enable_als_power->setChecked(als_power);
 
         connect(ui->chk_enable_als_power, SIGNAL(stateChanged(int)), this, SLOT(chk_enable_als_power_state_changed(int)));
-        connect(&_als_timer, SIGNAL(timeout()), this, SLOT(update_als_data()));
+	if(check_file(SONY_ALS_LUX))
+        	connect(&_als_timer, SIGNAL(timeout()), this, SLOT(update_als_lux_data()));
+	if(check_file(SONY_ALS_KELVIN))
+        	connect(&_als_timer, SIGNAL(timeout()), this, SLOT(update_als_kelvin_data()));
         _als_timer.start(500);
     }
     else ui->frm_als->setEnabled(false);
@@ -220,10 +223,15 @@ void MainWindow::chk_enable_touchpad_state_changed(int state) {
 void MainWindow::chk_enable_als_power_state_changed(int state) {
     write_int_to_file(SONY_ALS_POWER, state == 2 ? 1 : 0);
 }
-void MainWindow::update_als_data() {
+
+void MainWindow::update_als_lux_data() {
     char buf[64];
     ui->lbl_als_lux_val->setText(read_str_from_file(SONY_ALS_LUX, buf, sizeof(buf)/sizeof(buf[0])));
-    //ui->lbl_als_kelvin_val->setText(read_str_from_file(SONY_ALS_KELVIN, buf, sizeof(buf)/sizeof(buf[0])));
+}
+
+void MainWindow::update_als_kelvin_data() {
+    char buf[64];
+    ui->lbl_als_kelvin_val->setText(read_str_from_file(SONY_ALS_KELVIN, buf, sizeof(buf)/sizeof(buf[0])));
 }
 
 void MainWindow::chk_lid_s3_changed(int state) {

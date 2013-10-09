@@ -294,7 +294,7 @@
                <item row="0" column="1">
                 <widget class="QLabel" name="lbl_als_lux_val">
                  <property name="text">
-                  <string>ALS Luminance</string>
+                  <string>Not available</string>
                  </property>
                 </widget>
                </item>
@@ -308,7 +308,7 @@
                <item row="1" column="1">
                 <widget class="QLabel" name="lbl_als_kelvin_val">
                  <property name="text">
-                  <string>ALS Temperature</string>
+                  <string>Not available</string>
                  </property>
                  <property name="scaledContents">
                   <bool>false</bool>
