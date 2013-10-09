@@ -154,7 +154,8 @@ void MainWindow::setup_ui() {
     else ui->chk_enable_optdev->setEnabled(false);
 
     // Thermal Control
-    if (check_file(SONY_THERMAL_NUM)) {
+    if (0) {
+    //if (check_file(SONY_THERMAL_NUM)) {
         int const profiles = read_int_from_file(SONY_THERMAL_NUM);
 
         if (profiles > 2)
@@ -222,7 +223,7 @@ void MainWindow::chk_enable_als_power_state_changed(int state) {
 void MainWindow::update_als_data() {
     char buf[64];
     ui->lbl_als_lux_val->setText(read_str_from_file(SONY_ALS_LUX, buf, sizeof(buf)/sizeof(buf[0])));
-    ui->lbl_als_kelvin_val->setText(read_str_from_file(SONY_ALS_KELVIN, buf, sizeof(buf)/sizeof(buf[0])));
+    //ui->lbl_als_kelvin_val->setText(read_str_from_file(SONY_ALS_KELVIN, buf, sizeof(buf)/sizeof(buf[0])));
 }
 
 void MainWindow::chk_lid_s3_changed(int state) {
