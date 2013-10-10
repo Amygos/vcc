@@ -71,3 +71,13 @@ char const* read_str_from_file(char const* path, char* buf, size_t buf_size) {
 
     return buf;
 }
+
+void write_str_to_file(char const* path, char const *str) {
+    FILE* const fd = open_file(path, "w");
+    if (fprintf(fd, "%s", str) < 0) {
+        fprintf(stderr, "write_srt_to_file: fprintf failed - %s\n",
+                strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    fclose(fd);
+}
