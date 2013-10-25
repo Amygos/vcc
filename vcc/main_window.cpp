@@ -157,29 +157,29 @@ void MainWindow::setup_ui() {
     else ui->chk_enable_optdev->setEnabled(false);
 
     // Thermal Control
-    if (0) {
-    //if (check_file(SONY_THERMAL_NUM)) {
-        int const profiles = read_int_from_file(SONY_THERMAL_NUM);
+    if (check_file(SONY_THERMAL_NUM)) {
+	std::string profiles;
+        char const *profile;
+	char buf[64];
 
-        if (profiles > 2)
+	profiles = read_str_from_file(SONY_THERMAL_NUM, buf, sizeof(buf)/sizeof(buf[0]));
+
+	if (profiles.find("silent", 0) != std::string::npos)
             ui->btngrp_thermal->setId(ui->rad_thermal_silent, 2);
-        else
+	else
             ui->rad_thermal_silent->setEnabled(0);
 
         ui->btngrp_thermal->setId(ui->rad_thermal_performance, 1);
         ui->btngrp_thermal->setId(ui->rad_thermal_balanced, 0);
-        switch(read_int_from_file(SONY_THERMAL)) {
-            case 2:
-                ui->rad_thermal_silent->setChecked(true);
-                break;
-            case 1:
-                ui->rad_thermal_performance->setChecked(true);
-                break;
-            case 0:
-                ui->rad_thermal_balanced->setChecked(true);
-                break;
-        }
 
+	profile = read_str_from_file(SONY_THERMAL, buf, sizeof(buf)/sizeof(buf[0]));
+	if (!strncmp(profile, "silent", strlen("silent")))
+                ui->rad_thermal_silent->setChecked(true);
+	else if (!strncmp(profile, "performance", strlen("silent")))
+                ui->rad_thermal_performance->setChecked(true);
+	else if (!strncmp(profile, "balanced", strlen("silent")))
+                ui->rad_thermal_balanced->setChecked(true);
+        
         connect(ui->btngrp_thermal, SIGNAL(buttonClicked(int)), this, SLOT(btngrp_thermal_button_clicked(int)));
     }
     else ui->frm_thermal->setEnabled(false);
@@ -250,10 +250,18 @@ void MainWindow::chk_enable_optdev_state_changed(int state) {
 }
 
 void MainWindow::btngrp_thermal_button_clicked(int id) {
-    int profiles = read_int_from_file(SONY_THERMAL_NUM);
 
-    if (id < profiles)
-        write_int_to_file(SONY_THERMAL, id);
+    switch(id) {
+	case 2:
+		write_str_to_file(SONY_THERMAL, "silent");
+		break;
+	case 1:
+		write_str_to_file(SONY_THERMAL, "performance");
+		break;
+	case 0:
+		write_str_to_file(SONY_THERMAL, "balanced");
+                break;
+    }
 }
 
 void MainWindow::list_index_changed( int index )
