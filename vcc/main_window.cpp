@@ -82,16 +82,17 @@ void MainWindow::setup_ui() {
     }
     else ui->chk_battery_fast_charge->setEnabled(false);
     if (check_file(SONY_BATTERY_CHARGE_LIMITER)) {
-        ui->btngrp_battery_protection->setId(ui->rad_battery_max_protection, 2);
-        ui->btngrp_battery_protection->setId(ui->rad_battery_medium_protection, 1);
+        ui->btngrp_battery_protection->setId(ui->rad_battery_max_protection, 50);
+        ui->btngrp_battery_protection->setId(ui->rad_battery_medium_protection, 80);
         ui->btngrp_battery_protection->setId(ui->rad_battery_no_protection, 0);
         switch(read_int_from_file(SONY_BATTERY_CHARGE_LIMITER)) {
-            case 2:
+            case 50:
                 ui->rad_battery_max_protection->setChecked(true);
                 break;
-            case 1:
+            case 80:
                 ui->rad_battery_medium_protection->setChecked(true);
                 break;
+            case 100:
             case 0:
                 ui->rad_battery_no_protection->setChecked(true);
                 break;
