@@ -97,7 +97,7 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="stackedWidgetPage1" native="true">
+        <widget class="QWidget" name="stackedWidgetPage1">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QCheckBox" name="chk_battery_fast_charge">
@@ -124,7 +124,7 @@
                 <string>Maximum Battery Protection (50% charge)</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_battery_protection</string>
+                <string notr="true">btngrp_battery_protection</string>
                </attribute>
               </widget>
              </item>
@@ -134,7 +134,7 @@
                 <string>Medium Battery Protection (80% charge)</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_battery_protection</string>
+                <string notr="true">btngrp_battery_protection</string>
                </attribute>
               </widget>
              </item>
@@ -144,7 +144,7 @@
                 <string>No Battery Protection (100% charge)</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_battery_protection</string>
+                <string notr="true">btngrp_battery_protection</string>
                </attribute>
               </widget>
              </item>
@@ -166,7 +166,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage2" native="true">
+        <widget class="QWidget" name="stackedWidgetPage2">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QFrame" name="frm_kbd_bl">
@@ -234,7 +234,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage3" native="true">
+        <widget class="QWidget" name="stackedWidgetPage3">
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
            <widget class="QCheckBox" name="chk_enable_touchpad">
@@ -258,7 +258,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage4" native="true">
+        <widget class="QWidget" name="stackedWidgetPage4">
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QFrame" name="frm_als">
@@ -322,7 +322,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage5" native="true">
+        <widget class="QWidget" name="stackedWidgetPage5">
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
            <widget class="QFrame" name="frm_lid">
@@ -368,7 +368,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage6" native="true">
+        <widget class="QWidget" name="stackedWidgetPage6">
          <layout class="QFormLayout" name="formLayout_5">
           <item row="0" column="0">
            <widget class="QCheckBox" name="chk_enable_optdev">
@@ -379,7 +379,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="stackedWidgetPage7" native="true">
+        <widget class="QWidget" name="stackedWidgetPage7">
          <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
            <widget class="QFrame" name="frm_thermal">
@@ -399,7 +399,7 @@
                 <string>Balanced Profile</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_thermal</string>
+                <string notr="true">btngrp_thermal</string>
                </attribute>
               </widget>
              </item>
@@ -409,7 +409,7 @@
                 <string>Silent Profile</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_thermal</string>
+                <string notr="true">btngrp_thermal</string>
                </attribute>
               </widget>
              </item>
@@ -419,7 +419,7 @@
                 <string>Performance Profile</string>
                </property>
                <attribute name="buttonGroup">
-                <string>btngrp_thermal</string>
+                <string notr="true">btngrp_thermal</string>
                </attribute>
               </widget>
              </item>
