@@ -42,6 +42,8 @@ public:
 private:
     Ui::MainWindow *ui;
     QTimer _als_timer;
+    QTimer _fan_speed_timer;
+    QTimer _fan_forced_timer;
 
     void setup_ui();
 
@@ -57,6 +59,10 @@ private slots:
     void chk_enable_als_power_state_changed(int state);
     void update_als_lux_data();
     void update_als_kelvin_data();
+
+    void update_fan_speed_data();
+    void update_fan_forced_status();
+    void btn_fan_forced_clicked();
 
     void chk_lid_s3_changed(int state);
     void chk_lid_s4_changed(int state);

@@ -184,6 +184,24 @@ void MainWindow::setup_ui() {
         connect(ui->btngrp_thermal, SIGNAL(buttonClicked(int)), this, SLOT(btngrp_thermal_button_clicked(int)));
     }
     else ui->frm_thermal->setEnabled(false);
+
+    if (check_file(SONY_FAN_SPEED)) {
+	    ui->lbl_fan_speed_val->setEnabled(1);
+	    ui->lbl_fan_speed->setEnabled(1);
+	    connect(&_fan_speed_timer, SIGNAL(timeout()), this, SLOT(update_fan_speed_data()));
+	    _fan_speed_timer.start(500);
+    }
+    if (check_file(SONY_FAN_FORCED)) {
+	    ui->lbl_fan_forced->setEnabled(1);
+	    ui->btn_fan_forced->setEnabled(1);
+	    connect(&_fan_forced_timer, SIGNAL(timeout()), this, SLOT(update_fan_forced_status()));
+	    connect(ui->btn_fan_forced, SIGNAL(clicked()), this, SLOT(btn_fan_forced_clicked()));
+
+	    _fan_forced_timer.start(500);
+    }
+
+
+
 }
 
 void MainWindow::chk_battery_fast_charge_changed(int state) {
@@ -233,6 +251,34 @@ void MainWindow::update_als_lux_data() {
 void MainWindow::update_als_kelvin_data() {
     char buf[64];
     ui->lbl_als_kelvin_val->setText(read_str_from_file(SONY_ALS_KELVIN, buf, sizeof(buf)/sizeof(buf[0])));
+}
+
+void MainWindow::update_fan_speed_data() {
+    char buf[64];
+    int i;
+
+    read_str_from_file(SONY_FAN_SPEED, buf, sizeof(buf)/sizeof(buf[0]));
+
+    //Remove newline
+    for(i = 0 ; (buf[i] != '\n') && (i < 64); ++i);
+    buf[i] = '\0';
+
+    ui->lbl_fan_speed_val->setText(buf);
+}
+
+void MainWindow::update_fan_forced_status() {
+	int status = read_int_from_file(SONY_FAN_FORCED);
+
+	if(status)
+		ui->btn_fan_forced->setText("Stop");
+	else
+		ui->btn_fan_forced->setText("Start");
+}
+
+void MainWindow::btn_fan_forced_clicked() {
+	int status = read_int_from_file(SONY_FAN_FORCED);
+
+	write_int_to_file(SONY_FAN_FORCED, !status);
 }
 
 void MainWindow::chk_lid_s3_changed(int state) {

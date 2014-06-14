@@ -42,6 +42,8 @@ static char const*const SONY_LID_CTRL = "/sys/devices/platform/sony-laptop/lid_r
 static char const*const SONY_OPTICAL_DEV = "/sys/devices/platform/sony-laptop/odd_power";
 static char const*const SONY_THERMAL = "/sys/devices/platform/sony-laptop/thermal_control";
 static char const*const SONY_THERMAL_NUM = "/sys/devices/platform/sony-laptop/thermal_profiles";
+static char const*const SONY_FAN_SPEED = "/sys/devices/platform/sony-laptop/fanspeed";
+static char const*const SONY_FAN_FORCED = "/sys/devices/platform/sony-laptop/fan_forced";
 
 int check_file(char const* path);
 
