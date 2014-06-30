@@ -139,15 +139,30 @@ void MainWindow::setup_ui() {
     else ui->frm_als->setEnabled(false);
 
     // Lid
-    if (check_file(SONY_LID_CTRL)) {
-        int const lid = read_int_from_file(SONY_LID_CTRL);
-        ui->chk_lid_s3->setChecked(lid & 2);
-        ui->chk_lid_s4->setChecked(lid & 1);
+    if (check_file(SONY_LID_RESUME_S3)) {
+        int const status = read_int_from_file(SONY_LID_RESUME_S3);
+
+	ui->chk_lid_s3->setEnabled(true);
+	ui->chk_lid_s3->setChecked(status);
 
         connect(ui->chk_lid_s3, SIGNAL(stateChanged(int)), this, SLOT(chk_lid_s3_changed(int)));
+    }
+    if (check_file(SONY_LID_RESUME_S4)) {
+        int const status = read_int_from_file(SONY_LID_RESUME_S4);
+
+	ui->chk_lid_s4->setEnabled(true);
+	ui->chk_lid_s4->setChecked(status);
+
         connect(ui->chk_lid_s4, SIGNAL(stateChanged(int)), this, SLOT(chk_lid_s4_changed(int)));
     }
-    else ui->frm_lid->setEnabled(false);
+    if (check_file(SONY_LID_RESUME_S5)) {
+        int const status = read_int_from_file(SONY_LID_RESUME_S5);
+
+	ui->chk_lid_s5->setEnabled(true);
+	ui->chk_lid_s5->setChecked(status);
+
+        connect(ui->chk_lid_s5, SIGNAL(stateChanged(int)), this, SLOT(chk_lid_s5_changed(int)));
+    }
 
     // Optical device
     if (check_file(SONY_OPTICAL_DEV)) {
@@ -282,14 +297,16 @@ void MainWindow::btn_fan_forced_clicked() {
 }
 
 void MainWindow::chk_lid_s3_changed(int state) {
-    int const lid = read_int_from_file(SONY_LID_CTRL);
-    
-    write_int_to_file(SONY_LID_CTRL, state == 2 ? (lid | 2) : (lid & ~2));
+    write_int_to_file(SONY_LID_RESUME_S3, state == 2 ? 1 : 0);
 }
+
 void MainWindow::chk_lid_s4_changed(int state) {
-    int const lid = read_int_from_file(SONY_LID_CTRL);
-    
-    write_int_to_file(SONY_LID_CTRL, state == 2 ? (lid | 1) : (lid & ~1));
+    write_int_to_file(SONY_LID_RESUME_S4, state == 2 ? 1 : 0);
+}
+
+void MainWindow::chk_lid_s5_changed(int state) {
+	printf("%d\n",state);
+    write_int_to_file(SONY_LID_RESUME_S5, state == 2 ? 1 : 0);
 }
 
 void MainWindow::chk_enable_optdev_state_changed(int state) {

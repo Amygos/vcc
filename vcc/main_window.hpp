@@ -66,6 +66,7 @@ private slots:
 
     void chk_lid_s3_changed(int state);
     void chk_lid_s4_changed(int state);
+    void chk_lid_s5_changed(int state);
 
     void chk_enable_optdev_state_changed(int state);
 

@@ -343,6 +343,9 @@
              </property>
              <item>
               <widget class="QCheckBox" name="chk_lid_s3">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Resume from suspend on lid open</string>
                </property>
@@ -350,8 +353,21 @@
              </item>
              <item>
               <widget class="QCheckBox" name="chk_lid_s4">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Resume from hibernate on lid open</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_lid_s5">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Resume from S5 on lid open</string>
                </property>
               </widget>
              </item>
