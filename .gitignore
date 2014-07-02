@@ -3,4 +3,4 @@ moc_*.cpp
 ui_*.h
 vaio-control-center
 *.o
-
+*.autosave
